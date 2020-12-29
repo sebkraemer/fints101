@@ -1,0 +1,21 @@
+{
+  "name": "fints101",
+  "version": "0.1.0",
+  "description": "FinTS101",
+  "main": "getting-started/test.js",
+  "scripts": {
+    "prestart": "exit 0; antlr4 -Dlanguage=JavaScript src/antlr/FinTS.g4",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fints",
+    "hbci",
+    "parser"
+  ],
+  "author": "Sebastian Krämer",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.8.0"
+  }
+}
