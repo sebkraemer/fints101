@@ -1,5 +1,4 @@
 var http = require('http');
-
 var fints = require('./fints.js');
 
 http.createServer(function (req, res) {
@@ -13,13 +12,35 @@ http.createServer(function (req, res) {
   console.log(treeSegmentkopf);
   const treeString = treeSegmentkopf.toStringTree();
   console.log(treeString);
-  res.write(`unmodified parse tree for 'segmentkopf' rule: ${treeString}`);
+  res.write(`unmodified parse tree for 'segmentkopf' rule via toStringTree(): ${treeString}\n`);
 
   // some debug
+  const theChild = treeSegmentkopf.children[1].toString();
   const testText = treeSegmentkopf.children[1].getText();
   console.log(testText);
   const testSymbol = treeSegmentkopf.children[1].getSymbol();
   const tokentype = testSymbol.type; //why is getType() not defined?
   console.log(testSymbol);
-  res.end();
+
+  class Visitor {
+    visitChildren(ctx) {
+      if (!ctx) {
+        return;
+      }
+  
+      if (ctx.children) {
+        return ctx.children.map(child => {
+          if (child.children && child.children.length != 0) {
+            return child.accept(this);
+          } else {
+            return child.getText();
+          }
+        });
+      }
+    }
+  }
+  
+  const visitResult = treeSegmentkopf.accept(new Visitor());
+
+  res.end(`visitChildren result: ` + JSON.stringify(visitResult));
 }).listen(3101);
