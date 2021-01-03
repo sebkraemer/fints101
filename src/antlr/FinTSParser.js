@@ -1,7 +1,6 @@
 // Generated from /Users/sebi/src/hbci101/src/antlr/FinTS.g4 by ANTLR 4.8
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
-var FinTSListener = require('./FinTSListener').FinTSListener;
 var grammarFileName = "FinTS.g4";
 
 
@@ -115,18 +114,6 @@ SegmentkopfContext.prototype.bezugssegment = function() {
     return this.getTypedRuleContext(BezugssegmentContext,0);
 };
 
-SegmentkopfContext.prototype.enterRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.enterSegmentkopf(this);
-	}
-};
-
-SegmentkopfContext.prototype.exitRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.exitSegmentkopf(this);
-	}
-};
-
 
 
 
@@ -202,18 +189,6 @@ SegmentkennungContext.prototype.DT_AN = function(i) {
 };
 
 
-SegmentkennungContext.prototype.enterRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.enterSegmentkennung(this);
-	}
-};
-
-SegmentkennungContext.prototype.exitRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.exitSegmentkennung(this);
-	}
-};
-
 
 
 
@@ -271,18 +246,6 @@ SegmentnummerContext.prototype.DT_num = function() {
     return this.getToken(FinTSParser.DT_num, 0);
 };
 
-SegmentnummerContext.prototype.enterRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.enterSegmentnummer(this);
-	}
-};
-
-SegmentnummerContext.prototype.exitRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.exitSegmentnummer(this);
-	}
-};
-
 
 
 
@@ -331,18 +294,6 @@ SegmentversionContext.prototype.DT_num = function() {
     return this.getToken(FinTSParser.DT_num, 0);
 };
 
-SegmentversionContext.prototype.enterRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.enterSegmentversion(this);
-	}
-};
-
-SegmentversionContext.prototype.exitRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.exitSegmentversion(this);
-	}
-};
-
 
 
 
@@ -389,18 +340,6 @@ BezugssegmentContext.prototype.constructor = BezugssegmentContext;
 
 BezugssegmentContext.prototype.DT_num = function() {
     return this.getToken(FinTSParser.DT_num, 0);
-};
-
-BezugssegmentContext.prototype.enterRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.enterBezugssegment(this);
-	}
-};
-
-BezugssegmentContext.prototype.exitRule = function(listener) {
-    if(listener instanceof FinTSListener ) {
-        listener.exitBezugssegment(this);
-	}
 };
 
 

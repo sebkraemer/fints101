@@ -2,6 +2,7 @@
     "antlr4.generation": {
         "mode": "external",
         "language": "JavaScript",
+        "listeners": false,
         "outputDir": "."
     }
 }
