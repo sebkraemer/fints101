@@ -38,6 +38,7 @@ Browse [http://localhost:3101](http://localhost:3101). It should show a simple p
 ```
 input: HIBNK:1:1:1
 unmodified parse tree for 'segmentkopf' rule via toStringTree(): ([] ([10] H I B N K) : ([12] 1) : ([14] 1) : ([16] 1))
-visitChildren result: [["H","I","B","N","K"],":",["1"],":",["1"],":",["1"]]```
+visitChildren result: [["H","I","B","N","K"],":",["1"],":",["1"],":",["1"]]
+```
 
 If you're actually reading or even running this, I'd love to hear from you to tell me what you think!
