@@ -27,15 +27,16 @@ http.createServer(function (req, res) {
         return;
       }
 
+      if (!ctx.children) {
+        return;
+      }
+
       let tagName = 'unknownTag'
       if (ctx instanceof ParserRuleContext) {
         const index = ctx.ruleIndex
         tagName = parserRules[ctx.ruleIndex];
-      }
+        let result = `\n<${tagName}>`;
 
-      let result = `<${tagName}>`;
-
-      if (ctx.children) {
         ctx.children.forEach(child => {
           const childText = child.getText();
           if (child.children && child.children.length != 0) {
@@ -49,8 +50,9 @@ http.createServer(function (req, res) {
             }
           }
         });
+
+        return result + `</${tagName}>\n`;
       }
-      return result + `</${tagName}>`;
     }
   }
 
