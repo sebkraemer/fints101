@@ -32,22 +32,9 @@ Run the application:
 npm start
 ```
 
-Browse [http://localhost:3101](http://localhost:3101). It should show a simple parse:
+Browse [http://localhost:3101](http://localhost:3101). It should show a simple parse
+with semanticallz colored output for input `HIBNK:1:1:1`:
 
-```
-input: HIBNK:1:1:1
-unmodified parse tree for 'segmentkopf' rule via toStringTree(): ([] ([10] H I B N K) : ([12] 1) : ([14] 1) : ([16] 1))
-visitChildren result: 
-
-<segmentkopf>
-<segmentkennung> <DT_AN>H</DT_AN>  <DT_AN>I</DT_AN>  <DT_AN>B</DT_AN>  <DT_AN>N</DT_AN>  <DT_AN>K</DT_AN> </segmentkennung>
- <DEG_SEP>:</DEG_SEP> 
-<segmentnummer> <DT_num>1</DT_num> </segmentnummer>
- <DEG_SEP>:</DEG_SEP> 
-<segmentversion> <DT_num>1</DT_num> </segmentversion>
- <DEG_SEP>:</DEG_SEP> 
-<bezugssegment> <DT_num>1</DT_num> </bezugssegment>
-</segmentkopf>
-```
+![HIBNK in color](docs/img/fints101-hibnk-in-color.png)
 
 If you're reading or even running this, I'd love to hear from you to tell me what you think!

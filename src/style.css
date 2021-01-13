@@ -1,0 +1,15 @@
+.DEG_SEP {
+    color:rgb(210, 10, 236);
+}
+
+.DT_num {
+    color: #b41b1b;
+}
+
+.segmentnummer {
+    background-color: blue;
+}
+
+.segmentkennung {
+    background-color: chocolate;
+}
