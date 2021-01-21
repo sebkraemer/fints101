@@ -1,3 +1,10 @@
+/* not for the grammar, only the output html result box */
+#resultDiv {
+    /* border: 5px outset black; */
+    text-align: left;
+    padding: 10px
+}
+
 .DEG_SEP {
     color:rgb(210, 10, 236);
 }

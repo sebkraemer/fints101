@@ -1,5 +1,3 @@
-const { ParserRuleContext } = require('antlr4');
-const { TerminalNode } = require('antlr4/tree/Tree');
 var http = require('http');
 var fs = require('fs');
 var fints = require('./fints.js');
@@ -17,60 +15,45 @@ http.createServer(function (req, res) {
     res.write(`<!doctype html>\n<html lang="en"> <head>
       <title>FinTS 101</title>
       <link rel="stylesheet" type="text/css" href="style.css" />
-      </head>\n<body>\n`);
-    const input = "HIBNK:1:1:1"
-    res.write(`input: ${input}<br>\n`);
+      </head>\n<body>\n
+      <p>Welcome to FinTS101.</p>
 
+      <label for="fintsInputArea">FinTS message</label>
+      <form id="fintsForm">
+      <textarea id="fintsInputArea" name="fintsInputArea" rows="10" cols="80" padding="3" autofocus>HIBNK:1:1:1</textarea>
+      <p>
+      <button type="submit" name="submitButton" value="Submit">Submit</button>
+      <button type="reset" name="resetButton" value="Reset">Reset</button>
+      </form>
+      
+      <p>
+      <div id="resultDiv"></div>
+      <p>
+      <div id="resultStatus"></div>
+
+      <script type="text/javascript">
+        const form = document.getElementById("fintsForm");
+        const sb = form.elements["submitButton"];
+        sb.addEventListener("click", event => {
+          document.getElementById("resultDiv").innerHTML = form.elements["fintsInputArea"].value;
+          document.getElementById("resultStatus").innerHTML = "clicked";
+          event.preventDefault();
+        });
+      </script>
+      `);
+    const input = "HIBNK:1:1:1"
     const parser = fints.getParser(input);
     const voc = parser.vocabulary;
     const treeSegmentkopf = parser.segmentkopf();
     const treeString = treeSegmentkopf.toStringTree();
-    console.log(treeString);
-    res.write(`unmodified parse tree for 'segmentkopf' rule via toStringTree(): ${treeString}<br>\n`);
 
-    const parserRules = parser.ruleNames; // relates to ParserRuleContext
+    //res.write(`unmodified parse tree for 'segmentkopf' rule via toStringTree(): ${treeString}<br>\n`);
+
+    const ruleNames = parser.ruleNames; // relates to ParserRuleContext
     const symbolicNames = parser.symbolicNames; // relates to TerminalNode
+    const visitResult = treeSegmentkopf.accept(new fints.HtmlVisitor(ruleNames, symbolicNames));
 
-    // todo helper function to get rule or parser name as text from index/'type'
-
-    class Visitor {
-      visitChildren(ctx) {
-        if (!ctx) {
-          return;
-        }
-
-        if (!ctx.children) {
-          return;
-        }
-
-        let tagName = 'unknownTag'
-        if (ctx instanceof ParserRuleContext) {
-          const index = ctx.ruleIndex
-          tagName = parserRules[ctx.ruleIndex];
-          let result = `\n<span class="${tagName}">`; // ev. use data-* or title tags, too
-
-          ctx.children.forEach(child => {
-            const childText = child.getText();
-            if (child.children && child.children.length != 0) {
-              const childStr = child.toString();
-              result += child.accept(this);
-            } else {
-              if (child instanceof TerminalNode) {
-                const index = child.getSymbol().type;
-                const symbolName = symbolicNames[index];
-                result += `<span class="${symbolName}">${childText}</span>`;
-              }
-            }
-          });
-
-          return result + `</span> <!-- end of ${tagName} -->\n`;
-        }
-      }
-    }
-
-    const visitResult = treeSegmentkopf.accept(new Visitor());
-
-    res.write(`visitChildren result: \n` + visitResult);
+    //res.write(`visitChildren result: \n` + visitResult);
     res.end("<br>\n</body></html>");
   }
 }).listen(3101);
